@@ -24,6 +24,20 @@ const actionTypes = {
 
 let count = 0
 
+/**
+ * Generates a unique identifier using a global counter.
+ *
+ * @returns {string} A string representing the next unique identifier.
+ *
+ * @example
+ * // Calling genId will return '1'
+ * console.log(genId());
+ *
+ * @example
+ * // Multiple calls to genId will increment the counter and return consecutive values
+ * console.log(genId()); // Outputs: '2'
+ * console.log(genId()); // Outputs: '3'
+ */
 function genId() {
   count = (count + 1) % Number.MAX_VALUE
   return count.toString()
@@ -55,6 +69,11 @@ interface State {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
+/**
+ * Adds a toast to the removal queue after a specified delay.
+ *
+ * @param {string} toastId - The unique identifier for the toast to be removed.
+ */
 const addToRemoveQueue = (toastId: string) => {
   if (toastTimeouts.has(toastId)) {
     return
@@ -128,6 +147,13 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
+/**
+ * Dispatches an action to update the application state.
+ *
+ * @param {Action} action - The action object that contains information about what should be done.
+ * @returns {void}
+ * @throws {Error} If the provided action is invalid.
+ */
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
@@ -137,14 +163,33 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
+/**
+ * Displays a toast message with the given properties.
+ *
+ * @param {Toast} props - The properties for the toast message.
+ * @returns {{ id: string, dismiss: function, update: function }} An object containing the toast's ID, dismiss function, and update function.
+ */
 function toast({ ...props }: Toast) {
   const id = genId()
 
+  /**
+   * Updates a toast notification in the application state.
+   *
+   * @param {ToasterToast} props - The updated properties for the toast notification.
+   */
   const update = (props: ToasterToast) =>
     dispatch({
       type: "UPDATE_TOAST",
       toast: { ...props, id },
     })
+  /**
+   * Dispatches an action to dismiss a toast notification.
+   *
+   * @function
+   * @param {Object} dispatch - The Redux dispatch function used to dispatch actions.
+   * @param {string} id - The ID of the toast notification to be dismissed.
+   * @returns {void}
+   */
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
 
   dispatch({
@@ -166,6 +211,11 @@ function toast({ ...props }: Toast) {
   }
 }
 
+/**
+ * Custom hook to manage toast notifications within a React application.
+ *
+ * @returns {Object} An object containing the current state of toasts, a function to trigger a new toast, and a function to dismiss a specific or all toasts.
+ */
 function useToast() {
   const [state, setState] = React.useState<State>(memoryState)
 
