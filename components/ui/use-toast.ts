@@ -58,6 +58,11 @@ interface State {
 
 const toastTimeouts = new Map<string, ReturnType<typeof setTimeout>>()
 
+/**
+ * Adds a toast to the remove queue.
+ *
+ * @param {string} toastId - The unique identifier of the toast.
+ */
 const addToRemoveQueue = (toastId: string) => {
   if (toastTimeouts.has(toastId)) {
     return
@@ -74,6 +79,13 @@ const addToRemoveQueue = (toastId: string) => {
   toastTimeouts.set(toastId, timeout)
 }
 
+/**
+ * Reducer function to handle toast state changes.
+ *
+ * @param {State} state - The current state of the application.
+ * @param {Action} action - The action object containing the type and payload.
+ * @returns {State} - The new state after applying the action.
+ */
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case "ADD_TOAST":
@@ -133,6 +145,12 @@ const listeners: Array<(state: State) => void> = []
 
 let memoryState: State = { toasts: [] }
 
+/**
+ * Dispatches an action to the reducer function, updates the memory state,
+ * and notifies all registered listeners of the new state.
+ *
+ * @param {Action} action - The action object to be dispatched.
+ */
 function dispatch(action: Action) {
   memoryState = reducer(memoryState, action)
   listeners.forEach((listener) => {
@@ -142,14 +160,32 @@ function dispatch(action: Action) {
 
 type Toast = Omit<ToasterToast, "id">
 
+/**
+ * Displays a toast notification with the provided properties.
+ *
+ * @param {Toast} props - The properties for the toast notification.
+ * @returns {object} An object containing the ID of the toast and methods to dismiss and update it.
+ */
 function toast({ ...props }: Toast) {
   const id = genId()
 
+  /**
+   * Dispatches an action to update a toast notification.
+   *
+   * @param {ToasterToast} props - The properties of the toast to be updated.
+   * @returns {void}
+   */
   const update = (props: ToasterToast) =>
     dispatch({
       type: "UPDATE_TOAST",
       toast: { ...props, id },
     })
+  /**
+   * Dispatches an action to dismiss a toast notification.
+   *
+   * @function dismiss
+   * @param {string} id - The unique identifier of the toast to be dismissed.
+   */
   const dismiss = () => dispatch({ type: "DISMISS_TOAST", toastId: id })
 
   dispatch({
