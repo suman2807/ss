@@ -5,6 +5,17 @@ import * as ResizablePrimitive from "react-resizable-panels"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * A React component that wraps `ResizablePrimitive.PanelGroup` with additional styling and props handling.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} [props.className] - Additional CSS classes to apply to the panel group.
+ * @returns {JSX.Element} - A React JSX element representing the resizable panel group.
+ *
+ * @example
+ * // Basic usage of ResizablePanelGroup
+ * <ResizablePanelGroup className="my-custom-class">
+ *   {/* Content goes here */
 const ResizablePanelGroup = ({
   className,
   ...props
@@ -20,6 +31,17 @@ const ResizablePanelGroup = ({
 
 const ResizablePanel = ResizablePrimitive.Panel
 
+/**
+ * A component that renders a resizable handle for panels.
+ *
+ * @param {Object} props - The properties of the ResizableHandle component.
+ * @property {boolean} [props.withHandle=false] - Determines whether to display the resize handle.
+ * @property {string} [props.className=""] - Additional class names to apply to the resize handle.
+ * @returns {React.ReactNode} - The JSX representation of the ResizableHandle component.
+ *
+ * @example
+ * <ResizableHandle withHandle={true} className="custom-handle" />
+ */
 const ResizableHandle = ({
   withHandle,
   className,
