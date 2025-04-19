@@ -4,6 +4,16 @@ import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ButtonProps, buttonVariants } from "@/components/ui/button"
 
+/**
+ * A component representing a pagination navigation section.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} [props.className] - Additional CSS classes to be applied to the pagination container.
+ * @returns {React.ReactNode} The rendered pagination component.
+ *
+ * @example
+ * <Pagination className="custom-pagination">
+ *   {/* Pagination items will go here */
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
     role="navigation"
@@ -75,6 +85,16 @@ const PaginationPrevious = ({
 )
 PaginationPrevious.displayName = "PaginationPrevious"
 
+/**
+ * A component representing the "Next" button for pagination.
+ *
+ * @param {Object} props - The properties for the PaginationNext component.
+ * @param {string} [props.className] - Additional CSS classes to apply.
+ * @returns {JSX.Element} - The rendered PaginationNext component.
+ *
+ * @example
+ * <PaginationNext onClick={() => handleNextPage()} />
+ */
 const PaginationNext = ({
   className,
   ...props
@@ -91,6 +111,13 @@ const PaginationNext = ({
 )
 PaginationNext.displayName = "PaginationNext"
 
+/**
+ * A component that renders an ellipsis to indicate more pages in pagination.
+ *
+ * @param {Object} props - The props for the PaginationEllipsis component.
+ * @param {string} [props.className] - Additional classes to apply to the span element.
+ * @returns {JSX.Element} - A React JSX element representing the ellipsis button.
+ */
 const PaginationEllipsis = ({
   className,
   ...props
