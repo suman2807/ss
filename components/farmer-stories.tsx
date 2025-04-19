@@ -6,6 +6,14 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
+/**
+ * Generates a component displaying stories of farmers.
+ *
+ * This function maps through an array of farmer objects, rendering a card for each farmer with their details.
+ * Each card includes the farmer's image, name, farm, location, description, specialty, and impact.
+ *
+ * @returns {ReactElement} - A React component displaying a grid of farmer cards.
+ */
 export default function FarmerStories() {
   const farmers = [
     {
