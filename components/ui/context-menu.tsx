@@ -165,6 +165,12 @@ const ContextMenuSeparator = React.forwardRef<
 ))
 ContextMenuSeparator.displayName = ContextMenuPrimitive.Separator.displayName
 
+/**
+ * A React component that renders a context menu shortcut element.
+ *
+ * @param {React.HTMLAttributes<HTMLSpanElement>} props - HTML attributes to be passed to the underlying `span` element.
+ * @returns {JSX.Element} The rendered `ContextMenuShortcut` component.
+ */
 const ContextMenuShortcut = ({
   className,
   ...props
