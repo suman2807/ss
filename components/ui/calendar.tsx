@@ -9,6 +9,20 @@ import { buttonVariants } from "@/components/ui/button"
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>
 
+/**
+ * A functional component that renders a calendar using DayPicker.
+ *
+ * @param {Object} props - The properties for the Calendar component.
+ * @param {string} [props.className] - Additional classes to apply to the root element.
+ * @param {Object} [props.classNames] - Custom class names for various elements in the calendar.
+ * @param {boolean} [props.showOutsideDays=true] - Whether to show days from other months.
+ * @returns {JSX.Element} - The rendered Calendar component.
+ *
+ * Example usage:
+ * ```
+ * <Calendar className="my-calendar" />
+ * ```
+ */
 function Calendar({
   className,
   classNames,
