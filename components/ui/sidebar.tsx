@@ -38,6 +38,12 @@ type SidebarContext = {
 
 const SidebarContext = React.createContext<SidebarContext | null>(null)
 
+/**
+ * Hook to access the sidebar context provided by SidebarProvider.
+ *
+ * @returns {Object} - The current sidebar context.
+ * @throws {Error} - Throws an error if useSidebar is used outside of a SidebarProvider.
+ */
 function useSidebar() {
   const context = React.useContext(SidebarContext)
   if (!context) {
@@ -98,6 +104,15 @@ const SidebarProvider = React.forwardRef<
 
     // Adds a keyboard shortcut to toggle the sidebar.
     React.useEffect(() => {
+      /**
+       * Handles keydown events to toggle the sidebar using keyboard shortcuts.
+       *
+       * @param {KeyboardEvent} event - The keydown event object.
+       * @returns {void}
+       *
+       * Example usage:
+       * document.addEventListener('keydown', handleKeyDown);
+       */
       const handleKeyDown = (event: KeyboardEvent) => {
         if (
           event.key === SIDEBAR_KEYBOARD_SHORTCUT &&
