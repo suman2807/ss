@@ -28,6 +28,19 @@ const FormFieldContext = React.createContext<FormFieldContextValue>(
   {} as FormFieldContextValue
 )
 
+/**
+ * A higher-order component (HOC) that provides context for form fields using React's Context API.
+ * This HOC wraps the `Controller` component from a library like react-hook-form, providing it with a
+ * `FormFieldContext` value that includes the field name.
+ *
+ * @template TFieldValues - The type of the form values. Defaults to `FieldValues`.
+ * @template TName - The type of the field name. Defaults to `FieldPath<TFieldValues>`.
+ *
+ * @param {ControllerProps<TFieldValues, TName>} props - The properties to pass to the `Controller` component.
+ * @returns {JSX.Element} - The rendered `FormField` component wrapped in a `FormFieldContext.Provider`.
+ *
+ * @throws {Error} If the `name` prop is not provided.
+ */
 const FormField = <
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>
@@ -41,6 +54,21 @@ const FormField = <
   )
 }
 
+/**
+ * Hook to access field-related state within a FormField component.
+ *
+ * @returns {Object} - An object containing various properties related to the form field.
+ * @property {string} id - The ID of the form item associated with the field.
+ * @property {string} name - The name of the field.
+ * @property {string} formItemId - The ID for the form item element.
+ * @property {string} formDescriptionId - The ID for the form item description element.
+ * @property {string} formMessageId - The ID for the form item message element.
+ * @property {Object} [value] - The current value of the field, if applicable.
+ * @property {boolean} [error] - Indicates whether there is an error in the field.
+ * @property {string} [errorMessage] - The error message associated with the field, if any.
+ *
+ * @throws {Error} Throws an error if useFormField is used outside of a FormField context.
+ */
 const useFormField = () => {
   const fieldContext = React.useContext(FormFieldContext)
   const itemContext = React.useContext(FormItemContext)

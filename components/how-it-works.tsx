@@ -2,6 +2,11 @@ import { ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 
+/**
+ * A React component that renders an overview of how FarmLink works for both farmers and consumers.
+ *
+ * @returns {JSX.Element} - The rendered JSX element.
+ */
 export default function HowItWorks() {
   return (
     <div>

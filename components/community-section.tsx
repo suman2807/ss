@@ -72,6 +72,11 @@ export default function CommunitySection() {
 
   const [eventsState, setEventsState] = useState(events)
 
+  /**
+   * Handles the like action for a specific discussion by toggling its liked status and updating the like count.
+   *
+   * @param {string} discussionId - The unique identifier of the discussion to be liked or unliked.
+   */
   const handleLike = (discussionId) => {
     setDiscussions(
       discussions.map((discussion) => {
@@ -88,6 +93,12 @@ export default function CommunitySection() {
     )
   }
 
+  /**
+   * Handles the registration status of an event by toggling it between registered and not registered.
+   * Updates the state of events with the new registration status and attendee count.
+   *
+   * @param {string} eventId - The unique identifier for the event to be registered or unregistered.
+   */
   const handleRegister = (eventId) => {
     setEventsState(
       eventsState.map((event) => {

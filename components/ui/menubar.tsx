@@ -200,6 +200,13 @@ const MenubarSeparator = React.forwardRef<
 ))
 MenubarSeparator.displayName = MenubarPrimitive.Separator.displayName
 
+/**
+ * A component that represents a shortcut for a menubar item. It is styled with default
+ * margin-left, text size, tracking, and muted foreground color.
+ *
+ * @param {React.HTMLAttributes<HTMLSpanElement>} props - The properties to pass to the underlying span element.
+ * @returns {JSX.Element} - A React JSX Element representing a styled span for menubar shortcut.
+ */
 const MenubarShortcut = ({
   className,
   ...props

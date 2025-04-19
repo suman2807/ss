@@ -53,6 +53,15 @@ const DialogContent = React.forwardRef<
 ))
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
+/**
+ * A component representing the header of a dialog.
+ *
+ * @param {React.HTMLAttributes<HTMLDivElement>} props - The props for the `div` element, including custom class names and other HTML attributes.
+ * @returns {JSX.Element} - The rendered `DialogHeader` component.
+ *
+ * Example usage:
+ * <DialogHeader className="custom-header">This is a dialog header</DialogHeader>
+ */
 const DialogHeader = ({
   className,
   ...props
@@ -67,6 +76,16 @@ const DialogHeader = ({
 )
 DialogHeader.displayName = "DialogHeader"
 
+/**
+ * A component representing the footer of a dialog box.
+ *
+ * @param {React.HTMLAttributes<HTMLDivElement>} props - The props for the DialogFooter component, extending React's HTML attributes for a div element.
+ * @param {string} [props.className] - Additional CSS classes to apply to the dialog footer.
+ * @returns {JSX.Element} A JSX Element representing the dialog footer.
+ *
+ * Example usage:
+ * <DialogFooter className="my-custom-class">
+ *   {/* Content here */
 const DialogFooter = ({
   className,
   ...props

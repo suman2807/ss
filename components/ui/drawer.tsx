@@ -5,6 +5,13 @@ import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "@/lib/utils"
 
+/**
+ * A React component that renders a drawer with optional background scaling.
+ *
+ * @param {Object} props - The properties for the Drawer component.
+ * @param {boolean} [props.shouldScaleBackground=true] - Whether to scale the background when the drawer is open.
+ * @returns {React.ReactElement} The rendered Drawer component.
+ */
 const Drawer = ({
   shouldScaleBackground = true,
   ...props
@@ -55,6 +62,13 @@ const DrawerContent = React.forwardRef<
 ))
 DrawerContent.displayName = "DrawerContent"
 
+/**
+ * A component representing the header of a drawer.
+ *
+ * @param {Object} props - The properties to apply to this component.
+ * @param {string} [props.className] - Optional CSS class names for additional styling.
+ * @returns {JSX.Element} - The rendered DrawerHeader component.
+ */
 const DrawerHeader = ({
   className,
   ...props
@@ -66,6 +80,18 @@ const DrawerHeader = ({
 )
 DrawerHeader.displayName = "DrawerHeader"
 
+/**
+ * A React component that renders a footer for a drawer.
+ *
+ * @param {Object} props - The properties of the DrawerFooter component.
+ * @property {string} [className] - Additional CSS class names to be applied to the container div.
+ * @returns {React.ReactNode} - The rendered DrawerFooter component.
+ *
+ * @example
+ * <DrawerFooter className="custom-footer">
+ *   // Content inside the footer
+ * </DrawerFooter>
+ */
 const DrawerFooter = ({
   className,
   ...props

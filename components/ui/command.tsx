@@ -23,6 +23,13 @@ const Command = React.forwardRef<
 ))
 Command.displayName = CommandPrimitive.displayName
 
+/**
+ * A React component that renders a dialog with a command interface.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {React.ReactNode} props.children - The children elements to be rendered inside the dialog's content.
+ * @returns {JSX.Element} The JSX element representing the CommandDialog component.
+ */
 const CommandDialog = ({ children, ...props }: DialogProps) => {
   return (
     <Dialog {...props}>
@@ -124,6 +131,16 @@ const CommandItem = React.forwardRef<
 
 CommandItem.displayName = CommandPrimitive.Item.displayName
 
+/**
+ * A component that renders a command shortcut with default styling.
+ *
+ * @param {React.HTMLAttributes<HTMLSpanElement>} props - Properties to pass through to the underlying `<span>` element.
+ * @param {string} [props.className] - Additional class names to apply to the `<span>` element.
+ * @returns {JSX.Element} - The rendered command shortcut component.
+ *
+ * @example
+ * <CommandShortcut className="custom-class" onClick={() => console.log('Clicked')}>Ctrl+Shift+S</CommandShortcut>
+ */
 const CommandShortcut = ({
   className,
   ...props

@@ -24,6 +24,12 @@ type ChartContextProps = {
 
 const ChartContext = React.createContext<ChartContextProps | null>(null)
 
+/**
+ * Hook that provides access to the chart context within a ChartContainer component.
+ *
+ * @returns {object} - The chart context object.
+ * @throws {Error} - Throws an error if the hook is used outside of a <ChartContainer />.
+ */
 function useChart() {
   const context = React.useContext(ChartContext)
 
@@ -67,6 +73,27 @@ const ChartContainer = React.forwardRef<
 })
 ChartContainer.displayName = "Chart"
 
+/**
+ * Generates inline CSS styles for a chart component based on provided configuration.
+ *
+ * @param {Object} props - The properties object containing the chart's ID and configuration.
+ * @param {string} props.id - The unique identifier of the chart.
+ * @param {ChartConfig} props.config - Configuration object defining chart styling options.
+ * @returns {React.ReactNode | null} - A React component that renders the inline styles or null if no color configurations are provided.
+ *
+ * @example
+ * import ChartStyle from './ChartStyle';
+ * import { CHART_THEMES } from './themeConfig';
+ *
+ * const chartConfig = {
+ *   theme: 'dark',
+ *   color: '#ff0000'
+ * };
+ *
+ * <div>
+ *   <ChartStyle id="chart-1" config={chartConfig} />
+ * </div>
+ */
 const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
   const colorConfig = Object.entries(config).filter(
     ([_, config]) => config.theme || config.color
@@ -317,6 +344,30 @@ const ChartLegendContent = React.forwardRef<
 ChartLegendContent.displayName = "ChartLegend"
 
 // Helper to extract item config from a payload.
+/**
+ * Retrieves configuration from a payload based on a given key.
+ *
+ * @param {ChartConfig} config - The configuration object containing various settings.
+ * @param {unknown} payload - The payload object from which to retrieve the configuration.
+ * @param {string} key - The key used to identify the configuration within the payload.
+ * @returns {(any | undefined)} - The configuration value corresponding to the given key, or `undefined` if not found.
+ *
+ * @example
+ * const config = {
+ *   title: 'Sample Chart',
+ *   color: 'blue'
+ * };
+ * const payload = {
+ *   data: [10, 20, 30],
+ *   options: {
+ *     chartTitle: 'Revenue Analysis',
+ *     chartColor: 'red'
+ *   }
+ * };
+ *
+ * const configFromPayload = getPayloadConfigFromPayload(config, payload, 'chartTitle');
+ * console.log(configFromPayload); // Output: 'Revenue Analysis'
+ */
 function getPayloadConfigFromPayload(
   config: ChartConfig,
   payload: unknown,

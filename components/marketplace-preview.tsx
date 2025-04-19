@@ -11,6 +11,12 @@ import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
 
+/**
+ * Renders a preview of products from various categories (vegetables, fruits, grains).
+ *
+ * @function MarketplacePreview
+ * @returns {JSX.Element} The JSX element representing the Marketplace Preview.
+ */
 export default function MarketplacePreview() {
   const [activeTab, setActiveTab] = useState("vegetables")
   const { toast } = useToast()
@@ -132,6 +138,13 @@ export default function MarketplacePreview() {
     ],
   }
 
+  /**
+   * Handles adding a product to the cart and shows a toast notification.
+   *
+   * @param {Object} product - The product object that is being added to the cart.
+   * @param {string} product.name - The name of the product.
+   * @throws {Error} If the product parameter is not provided or is invalid.
+   */
   const handleAddToCart = (product) => {
     toast({
       title: "Added to cart",
@@ -139,6 +152,14 @@ export default function MarketplacePreview() {
     })
   }
 
+  /**
+   * Adds a product to the user's wishlist and displays a toast notification.
+   *
+   * @param {Object} product - The product object to add to the wishlist.
+   * @param {string} product.name - The name of the product.
+   *
+   * @returns {void}
+   */
   const handleAddToWishlist = (product) => {
     toast({
       title: "Added to wishlist",

@@ -45,6 +45,12 @@ const AlertDialogContent = React.forwardRef<
 ))
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName
 
+/**
+ * A component that represents the header of an alert dialog.
+ *
+ * @param {React.HTMLAttributes<HTMLDivElement>} props - The properties for the AlertDialogHeader component.
+ * @returns {JSX.Element} - The rendered AlertDialogHeader component.
+ */
 const AlertDialogHeader = ({
   className,
   ...props
@@ -59,6 +65,13 @@ const AlertDialogHeader = ({
 )
 AlertDialogHeader.displayName = "AlertDialogHeader"
 
+/**
+ * A functional component representing the footer of an alert dialog.
+ *
+ * @param {Object} props - The properties passed to the component.
+ * @param {string} [props.className] - Additional classes to be applied to the root element.
+ * @returns {React.ReactNode} - The rendered AlertDialogFooter component.
+ */
 const AlertDialogFooter = ({
   className,
   ...props

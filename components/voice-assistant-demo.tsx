@@ -128,6 +128,13 @@ export default function VoiceAssistantDemo() {
     }
   }, [language])
 
+  /**
+   * Initiates the speech recognition process and resets the transcript, response, and examples display.
+   *
+   * This function sets the current state of the application to its initial listening state. It clears any existing
+   * text in the transcript, response, and hides the examples section. If the recognitionRef.current is available,
+   * it starts the speech recognition process and updates the listening status to true.
+   */
   const startListening = () => {
     setTranscript("")
     setResponse("")
@@ -139,6 +146,20 @@ export default function VoiceAssistantDemo() {
     }
   }
 
+  /**
+   * Stops the ongoing speech recognition if one is active.
+   *
+   * This function checks if there is an active recognition instance referenced by `recognitionRef.current`.
+   * If such a reference exists, it calls the `stop` method on that instance to cease listening for speech,
+   * and then updates the state of `isListening` to `false`, indicating that speech recognition has been stopped.
+   *
+   * @returns {void}
+   *
+   * Example:
+   * ```
+   * stopListening();
+   * ```
+   */
   const stopListening = () => {
     if (recognitionRef.current) {
       recognitionRef.current.stop()
@@ -146,6 +167,11 @@ export default function VoiceAssistantDemo() {
     }
   }
 
+  /**
+   * Handles user queries by matching keywords to predefined responses and speaking the response out loud.
+   *
+   * @param {string} query - The user's input query.
+   */
   const handleUserQuery = (query) => {
     // Simple keyword matching for demo purposes
     const queryLower = query.toLowerCase()
@@ -218,6 +244,14 @@ export default function VoiceAssistantDemo() {
     }
   }
 
+  /**
+   * Stops any ongoing speech synthesis process if available.
+   *
+   * This function checks if the `window.speechSynthesis` object is available in the current environment. If it is, it cancels any ongoing speech synthesis and updates the `isSpeaking` state to `false`.
+   *
+   * @returns {void}
+   * @throws {Error} Throws an error if `window.speechSynthesis` is not available.
+   */
   const stopSpeaking = () => {
     if (typeof window !== "undefined" && window.speechSynthesis) {
       window.speechSynthesis.cancel()
@@ -225,6 +259,11 @@ export default function VoiceAssistantDemo() {
     }
   }
 
+  /**
+   * Handles the click event of an example by updating the transcript and handling the user query.
+   *
+   * @param {string} example - The example text that was clicked.
+   */
   const handleExampleClick = (example) => {
     setTranscript(example)
     handleUserQuery(example)
